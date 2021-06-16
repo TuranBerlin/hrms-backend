@@ -18,7 +18,7 @@ import turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto;
 @RequestMapping("/api/jobAdverts")
 public class JobAdvertsController {
 
-	JobAdvertService jobAdvertService;
+	private JobAdvertService jobAdvertService;
 	
 	public JobAdvertsController(JobAdvertService jobAdvertService) {
 		super();

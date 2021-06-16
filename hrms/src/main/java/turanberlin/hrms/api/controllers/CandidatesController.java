@@ -32,9 +32,9 @@ import turanberlin.hrms.entities.concretes.Candidate;
 @RequestMapping(value = "/api/users")
 public class CandidatesController {
 
-	CandidateService candidateService;
-	EmailService emailService;
-	EmailValidationService emailValidationService;
+	private CandidateService candidateService;
+	private EmailService emailService;
+	private EmailValidationService emailValidationService;
 
 	@Autowired
 	public CandidatesController(CandidateService candidateService, EmailService emailService,
@@ -49,6 +49,27 @@ public class CandidatesController {
 	public DataResult<List<Candidate>> getCandidates() {
 		return this.candidateService.getCandidates();
 	}
+	
+	@GetMapping("/get/candidatesOrderByGraduationYear")
+	public DataResult<List<Candidate>> getCandidatesOrderByCandidateCv_CandidateSchools_GraduationYearDesc() {
+		return this.candidateService.orderByCandidateCv_CandidateSchools_GraduationYearDesc();
+	}
+	
+	@GetMapping("/get/candidatesOrderByYearOfLeavingFromJob")
+	public DataResult<List<Candidate>> getCandidatesOrderByCandidateCv_WorkExps_YearOfLeavingDesc() {
+		return this.candidateService.OrderByCandidateCv_WorkExps_YearOfLeavingDesc();
+	}
+
+	
+//	@GetMapping("/get/candidates/orderBy/graduationYear/asc")
+//	public DataResult<List<Candidate>> getCandidatesOrderByGraduationYearAsc() {
+//		return this.candidateService.getCandidatesOrderByGraduationYearAsc();
+//	}
+//	
+//	@GetMapping("/get/candidates/orderBy/totalExp/asc")
+//	public DataResult<List<Candidate>> getCandidatesOrderByTotalExpAsc() {
+//		return this.candidateService.getCandidatesOrderByTotalExpAsc();
+//	}
 
 	@PostMapping(value = "/add/candidate")
 	public ResponseEntity<?> add(@Valid @RequestBody Candidate candidate, String confirmPassword) throws NumberFormatException, RemoteException {

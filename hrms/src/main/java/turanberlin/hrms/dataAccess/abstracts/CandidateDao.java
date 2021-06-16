@@ -10,4 +10,9 @@ public interface CandidateDao extends JpaRepository<Candidate, Integer> {
 	List<Candidate> getByNationalIdentityNumber(String nationalIdentityNumber);
 	
 	List<Candidate> getByEmail(String email);
+	
+	List<Candidate> OrderByCandidateCv_CandidateSchools_GraduationYearDesc();
+	
+	List<Candidate> OrderByCandidateCv_WorkExps_YearOfLeavingDesc();
+
 }

@@ -16,6 +16,7 @@ import turanberlin.hrms.core.utils.resultSystem.SuccessResult;
 import turanberlin.hrms.dataAccess.abstracts.CandidateDao;
 import turanberlin.hrms.entities.concretes.Candidate;
 
+
 @Service
 public class CandidateManager implements CandidateService {
 
@@ -36,6 +37,19 @@ public class CandidateManager implements CandidateService {
 	public DataResult<List<Candidate>> getCandidates() {
 		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findAll(), "Data listed");
 	}
+	
+
+	@Override
+	public DataResult<List<Candidate>> orderByCandidateCv_CandidateSchools_GraduationYearDesc() {
+		return new SuccessDataResult<List<Candidate>>(this.candidateDao.OrderByCandidateCv_CandidateSchools_GraduationYearDesc(),"Data listed");
+	}
+	
+
+	@Override
+	public DataResult<List<Candidate>> OrderByCandidateCv_WorkExps_YearOfLeavingDesc() {
+		return new SuccessDataResult<List<Candidate>>(this.candidateDao.OrderByCandidateCv_WorkExps_YearOfLeavingDesc());
+	}
+
 
 	@Override
 	public Result add(Candidate candidate, String confirmPassword) {

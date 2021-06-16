@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -27,5 +30,9 @@ public class User {
 	
 	@Column(name = "password")
 	private String password;
+	
+	@JsonManagedReference
+	@OneToOne()
+	private UserImage userImage;
 	
 }

@@ -57,10 +57,10 @@ public class Employer extends User {
 	private String phoneNumber;
 	
 	@Column(name = "email_confirmed")
-	private boolean emailConfirmed;
+	private Boolean isEmailConfirmed;
 	
 	@Column(name = "employee_confirmed")
-	private boolean employeeConfirmed;
+	private Boolean isEmployeeConfirmed;
 	
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvert> jobAdvert;

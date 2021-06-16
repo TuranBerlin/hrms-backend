@@ -31,9 +31,9 @@ import turanberlin.hrms.entities.concretes.Employer;
 @RequestMapping("/api/users")
 public class EmployersController {
 
-	EmployerService employerService;
-	EmailService emailService;
-	EmailValidationService emailValidationService;
+	private EmployerService employerService;
+	private EmailService emailService;
+	private EmailValidationService emailValidationService;
 
 	@Autowired
 	public EmployersController(EmployerService employerService, EmailService emailService,

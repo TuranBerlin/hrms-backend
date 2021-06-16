@@ -31,8 +31,8 @@ import turanberlin.hrms.entities.concretes.Employer;
 @RequestMapping("/api/users")
 public class EmployeesController {
 
-	EmployeeService employeeService;
-	EmployeeValidateService employeeValidateService;
+	private EmployeeService employeeService;
+	private EmployeeValidateService employeeValidateService;
 
 	@Autowired
 	public EmployeesController(EmployeeService employeeService, EmployeeValidateService employeeValidateService) {

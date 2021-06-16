@@ -2,11 +2,14 @@ package turanberlin.hrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -54,7 +57,10 @@ public class Candidate extends User {
 	private int birthOfYear;
 	
 	@Column(name = "email_confirmed")
-	private boolean emailConfirmed;
+	private Boolean isEmailConfirmed;
 	
+	@JsonManagedReference
+	@OneToOne(mappedBy = "candidate")
+	private CandidateCv candidateCv;
 
 }
