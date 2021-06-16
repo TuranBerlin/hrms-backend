@@ -43,8 +43,9 @@ public class CloudinaryImageUploadManager implements CloudinaryImageUploadServic
 		User user = userDao.getById(userId);
 		userImage.setUser(userDao.getById(userId));
 		userImage.setIsImageAvailable(true);
+		userImage.setImageUrl(uploadResult.get("url").toString());
 		user.setUserImage(userImage);
-		userImageDao.save(userImage);
+		this.userImageDao.save(userImage);
 		return new SuccessDataResult<Map>(uploadResult);
 		}
 		catch(IOException exception){
