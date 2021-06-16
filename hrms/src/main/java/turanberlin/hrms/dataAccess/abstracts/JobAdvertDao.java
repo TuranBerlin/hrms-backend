@@ -19,4 +19,6 @@ public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer>{
 	
 	@Query("Select new turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto(ja.id, e.id, e.companyName, jp.positionName, ja.numberOfOpenPositions, ja.releaseDate, ja.deadline) From  Employer e, JobPosition jp Inner Join jp.jobAdvert ja where ja.isAdvertActive = 'true' order by ja.deadline")
 	List<JobAdvertWithDetailsDto> getJobAdvertWithDetailsByDateOrder();
+	
+	JobAdvert findById(int jobAdvertId);
 }

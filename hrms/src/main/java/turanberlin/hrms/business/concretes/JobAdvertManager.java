@@ -49,7 +49,9 @@ public class JobAdvertManager implements JobAdvertService{
 
 	@Override
 	public Result setAdvertStatus(Boolean status, int advertId) {
-		this.jobAdvertDao.getById(advertId).setIsAdvertActive(status);
+		JobAdvert jobAdvert = this.jobAdvertDao.findById(advertId);
+		jobAdvert.setIsAdvertActive(status);
+		this.jobAdvertDao.save(jobAdvert);
 		return new SuccessResult("Success: Job advertisements status updated");
 	}
 
