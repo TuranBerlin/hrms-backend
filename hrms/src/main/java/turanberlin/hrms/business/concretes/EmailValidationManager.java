@@ -1,5 +1,6 @@
 package turanberlin.hrms.business.concretes;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import turanberlin.hrms.business.abstracts.EmailValidationService;
@@ -17,6 +18,14 @@ public class EmailValidationManager implements EmailValidationService{
 	private CandidateDao candidateDao;
 	private EmployerDao employerDao;
 	
+	@Autowired
+	public EmailValidationManager(CandidateDao candidateDao, EmployerDao employerDao) {
+		super();
+		this.candidateDao = candidateDao;
+		this.employerDao = employerDao;
+	}
+
+
 	@Override
 	public Result validate( Candidate candidate) {
 		candidate.setIsEmailConfirmed(true);

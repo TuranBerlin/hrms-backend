@@ -1,5 +1,6 @@
 package turanberlin.hrms.business.concretes;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import turanberlin.hrms.business.abstracts.EmployeeValidateService;
@@ -13,6 +14,12 @@ import turanberlin.hrms.entities.concretes.Employer;
 public class EmployeeValidateManager implements EmployeeValidateService {
 	
 	private EmployerDao employerDao;
+
+	@Autowired
+	public EmployeeValidateManager(EmployerDao employerDao) {
+		super();
+		this.employerDao = employerDao;
+	}
 
 	@Override
 	public Result employeeValidate(Employer employer) {

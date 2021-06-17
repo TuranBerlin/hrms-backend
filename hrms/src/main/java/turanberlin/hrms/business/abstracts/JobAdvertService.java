@@ -18,6 +18,8 @@ public interface JobAdvertService {
 	
 	DataResult<List<JobAdvertWithDetailsDto>> getJobAdvertWithDetailsByDateOrder();
 	
+	DataResult<List<JobAdvertWithDetailsDto>> getAllByPage(int pageNumber, int pageSize);
+	
 	Result setAdvertStatus(Boolean status, int advertId);
 
 }

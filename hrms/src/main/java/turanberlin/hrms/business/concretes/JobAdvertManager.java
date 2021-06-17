@@ -3,6 +3,8 @@ package turanberlin.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import turanberlin.hrms.business.abstracts.JobAdvertService;
@@ -57,7 +59,15 @@ public class JobAdvertManager implements JobAdvertService{
 
 	@Override
 	public DataResult<List<JobAdvertWithDetailsDto>> getJobAdvertWithDetailsByDateOrder() {
-		return new SuccessDataResult<List<JobAdvertWithDetailsDto>>(this.jobAdvertDao.getJobAdvertWithDetailsByDateOrder());
+		return new SuccessDataResult<List<JobAdvertWithDetailsDto>>(this.jobAdvertDao.getJobAdvertWithDetailsByDateOrder(),"Data listed");
+	}
+	
+	@Override
+	public DataResult<List<JobAdvertWithDetailsDto>> getAllByPage(int pageNumber, int pageSize) {
+		pageNumber = (pageNumber > 0) ? pageNumber : 1;
+		pageSize = (pageSize > 0) ? pageSize : 1;
+		Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+		return new SuccessDataResult<List<JobAdvertWithDetailsDto>>(this.jobAdvertDao.getJobAdvertWithDetails(pageable),"Data listed");
 	}
 
 }
