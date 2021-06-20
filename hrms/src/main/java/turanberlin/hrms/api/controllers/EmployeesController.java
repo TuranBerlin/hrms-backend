@@ -28,7 +28,7 @@ import turanberlin.hrms.entities.concretes.Employee;
 import turanberlin.hrms.entities.concretes.Employer;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/employees")
 public class EmployeesController {
 
 	private EmployeeService employeeService;
@@ -41,17 +41,17 @@ public class EmployeesController {
 		this.employeeValidateService = employeeValidateService;
 	}
 
-	@GetMapping("/get/employees")
+	@GetMapping("/get/all")
 	public DataResult<List<Employee>> getEmployees() {
 		return this.employeeService.getEmployees();
 	}
 
-	@PostMapping("/add/employee")
+	@PostMapping("/add")
 	public ResponseEntity<?> add(@Valid @RequestBody Employee employee , String confirmPassword) {
 		return ResponseEntity.ok(this.employeeService.add(employee , confirmPassword));
 	}
 	
-	@PostMapping("/employee/verify/employer")
+	@PostMapping("/verify/employer")
 	public Result validate(@RequestBody Employer employer) {
 		 return this.employeeValidateService.employeeValidate(employer);
 	}

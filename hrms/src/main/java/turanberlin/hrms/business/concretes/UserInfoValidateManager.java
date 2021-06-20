@@ -58,7 +58,7 @@ public class UserInfoValidateManager implements UserInfoValidateService{
 	
 	
 	private boolean isPhoneNumberLengthValid(String phoneNumber) {
-		return phoneNumber.length() >= 12;
+		return phoneNumber.length() >= 7;
 	}
 
 	

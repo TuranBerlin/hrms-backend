@@ -14,5 +14,7 @@ public interface CandidateDao extends JpaRepository<Candidate, Integer> {
 	List<Candidate> OrderByCandidateCv_CandidateSchools_GraduationYearDesc();
 	
 	List<Candidate> OrderByCandidateCv_WorkExps_YearOfLeavingDesc();
+	
+	Candidate findById(int id);
 
 }

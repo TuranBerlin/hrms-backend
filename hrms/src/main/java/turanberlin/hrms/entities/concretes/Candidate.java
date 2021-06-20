@@ -62,5 +62,9 @@ public class Candidate extends User {
 	@JsonManagedReference
 	@OneToOne(mappedBy = "candidate")
 	private CandidateCv candidateCv;
+	
+	@JsonManagedReference
+	@OneToOne()
+	private UserImage userImage;
 
 }

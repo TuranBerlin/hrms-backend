@@ -39,6 +39,6 @@ public class UserImage {
 
 	@JsonBackReference
 	@OneToOne
-	private User user;
+	private Candidate candidate;
 
 }

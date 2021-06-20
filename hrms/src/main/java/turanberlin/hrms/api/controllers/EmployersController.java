@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +28,9 @@ import turanberlin.hrms.core.utils.resultSystem.ErrorDataResult;
 import turanberlin.hrms.core.utils.resultSystem.Result;
 import turanberlin.hrms.entities.concretes.Employer;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/employers")
 public class EmployersController {
 
 	private EmployerService employerService;
@@ -44,22 +46,22 @@ public class EmployersController {
 		this.emailValidationService = emailValidationService;
 	}
 
-	@GetMapping("/get/employer")
+	@GetMapping("/get/all")
 	public DataResult<List<Employer>> getEmployers() {
 		return this.employerService.getEmployers();
 	}
 
-	@PostMapping("/add/employer")
+	@PostMapping("/add")
 	public ResponseEntity<?> add(@Valid @RequestBody Employer employer , String confirmPassword) {
 		return ResponseEntity.ok(this.employerService.add(employer , confirmPassword));
 	}
 	
-	@PostMapping("/sendVerificationCode/employer")
+	@PostMapping("/sendVerificationCode")
 	public Result send(@RequestBody Employer to, int code) {
 		 return this.emailService.send(code,to);
 	}
 
-	@PostMapping("/verify/employer")
+	@PostMapping("/verify")
 	public Result validate(@RequestBody Employer employer) {
 		 return this.emailValidationService.validate(employer);
 	}

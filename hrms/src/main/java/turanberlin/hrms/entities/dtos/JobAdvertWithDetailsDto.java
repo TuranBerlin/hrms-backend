@@ -18,4 +18,10 @@ public class JobAdvertWithDetailsDto {
 	private int numberOfOpenPositions;
 	private LocalDate releaseDate;
 	private LocalDate deadline;
+	private int minSalary;
+	private int maxSalary;
+	private String title;
+	private String description;
+	private String cityName;
+	
 }

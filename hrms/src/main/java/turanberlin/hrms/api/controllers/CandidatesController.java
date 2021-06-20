@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +29,9 @@ import turanberlin.hrms.core.utils.resultSystem.DataResult;
 import turanberlin.hrms.core.utils.resultSystem.Result;
 import turanberlin.hrms.entities.concretes.Candidate;
 
+@CrossOrigin
 @RestController
-@RequestMapping(value = "/api/users")
+@RequestMapping(value = "/api/candidates")
 public class CandidatesController {
 
 	private CandidateService candidateService;
@@ -45,17 +47,17 @@ public class CandidatesController {
 		this.emailValidationService = emailValidationService;
 	}
 
-	@GetMapping("/get/candidates")
+	@GetMapping("/get/all")
 	public DataResult<List<Candidate>> getCandidates() {
 		return this.candidateService.getCandidates();
 	}
 	
-	@GetMapping("/get/candidatesOrderByGraduationYear")
+	@GetMapping("/get/all/orderByGraduationYear")
 	public DataResult<List<Candidate>> getCandidatesOrderByCandidateCv_CandidateSchools_GraduationYearDesc() {
 		return this.candidateService.orderByCandidateCv_CandidateSchools_GraduationYearDesc();
 	}
 	
-	@GetMapping("/get/candidatesOrderByYearOfLeavingFromJob")
+	@GetMapping("/get/all/orderByYearOfLeavingFromJob")
 	public DataResult<List<Candidate>> getCandidatesOrderByCandidateCv_WorkExps_YearOfLeavingDesc() {
 		return this.candidateService.OrderByCandidateCv_WorkExps_YearOfLeavingDesc();
 	}
@@ -71,17 +73,17 @@ public class CandidatesController {
 //		return this.candidateService.getCandidatesOrderByTotalExpAsc();
 //	}
 
-	@PostMapping(value = "/add/candidate")
+	@PostMapping(value = "/add")
 	public ResponseEntity<?> add(@Valid @RequestBody Candidate candidate, String confirmPassword) throws NumberFormatException, RemoteException {
 		return ResponseEntity.ok(this.candidateService.add(candidate , confirmPassword));
 	}
 	
-	@PostMapping("/sendVerificationCode/candidate")
+	@PostMapping("/sendVerificationCode")
 	public Result send(@RequestBody Candidate to, int code) {
 		 return this.emailService.send(code, to);
 	}
 
-	@PostMapping("/verify/candidate")
+	@PostMapping("/verify")
 	public Result validate(@RequestBody Candidate candidate) {
 		 return this.emailValidationService.validate(candidate);
 	}

@@ -12,16 +12,16 @@ import turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto;
 
 public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer>{
 
-	@Query(value = "Select new turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto(ja.id, e.id, e.companyName, jp.positionName, ja.numberOfOpenPositions, ja.releaseDate, ja.deadline) From  Employer e, JobPosition jp Inner Join jp.jobAdvert ja where e.id=:employerId and ja.isAdvertActive='true'")
+	@Query(value = "Select new turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto (ja.id, e.id, e.companyName, jp.positionName, ja.numberOfOpenPositions, ja.releaseDate, ja.deadline, ja.minSalary, ja.maxSalary, ja.title, ja.description, c.cityName) From  JobAdvert ja LEFT JOIN ja.jobPosition jp LEFT JOIN ja.city c LEFT JOIN ja.employer e where e.id=:employerId and ja.isAdvertActive='true'")
 	List<JobAdvertWithDetailsDto> getByEmployerId(@Param("employerId") int employerId);
 	
-	@Query("Select new turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto(ja.id, e.id, e.companyName, jp.positionName, ja.numberOfOpenPositions, ja.releaseDate, ja.deadline) From  Employer e, JobPosition jp Inner Join jp.jobAdvert ja where ja.isAdvertActive = 'true' ")
+	@Query("Select new turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto (ja.id, e.id, e.companyName, jp.positionName, ja.numberOfOpenPositions, ja.releaseDate, ja.deadline, ja.minSalary, ja.maxSalary, ja.title, ja.description, c.cityName) From  JobAdvert ja LEFT JOIN ja.jobPosition jp LEFT JOIN ja.city c LEFT JOIN ja.employer e where ja.isAdvertActive = 'true' ")
 	List<JobAdvertWithDetailsDto> getJobAdvertWithDetails();
 	
-	@Query("Select new turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto(ja.id, e.id, e.companyName, jp.positionName, ja.numberOfOpenPositions, ja.releaseDate, ja.deadline) From  Employer e, JobPosition jp Inner Join jp.jobAdvert ja where ja.isAdvertActive = 'true' ")
+	@Query("Select new turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto (ja.id, e.id, e.companyName, jp.positionName, ja.numberOfOpenPositions, ja.releaseDate, ja.deadline, ja.minSalary, ja.maxSalary, ja.title, ja.description, c.cityName) From  JobAdvert ja LEFT JOIN ja.jobPosition jp LEFT JOIN ja.city c LEFT JOIN ja.employer e  where ja.isAdvertActive = 'true' ")
 	List<JobAdvertWithDetailsDto> getJobAdvertWithDetails(Pageable pageable);
 	
-	@Query("Select new turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto(ja.id, e.id, e.companyName, jp.positionName, ja.numberOfOpenPositions, ja.releaseDate, ja.deadline) From  Employer e, JobPosition jp Inner Join jp.jobAdvert ja where ja.isAdvertActive = 'true' order by ja.deadline")
+	@Query("Select new turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto (ja.id, e.id, e.companyName, jp.positionName, ja.numberOfOpenPositions, ja.releaseDate, ja.deadline, ja.minSalary, ja.maxSalary, ja.title, ja.description, c.cityName) From  JobAdvert ja LEFT JOIN ja.jobPosition jp LEFT JOIN ja.city c LEFT JOIN ja.employer e  where ja.isAdvertActive = 'true' order by ja.deadline")
 	List<JobAdvertWithDetailsDto> getJobAdvertWithDetailsByDateOrder();
 	
 	JobAdvert findById(int jobAdvertId);

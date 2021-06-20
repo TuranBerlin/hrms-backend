@@ -2,6 +2,7 @@ package turanberlin.hrms.api.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import turanberlin.hrms.core.utils.resultSystem.Result;
 import turanberlin.hrms.entities.concretes.JobAdvert;
 import turanberlin.hrms.entities.dtos.JobAdvertWithDetailsDto;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/jobAdverts")
 public class JobAdvertsController {

@@ -27,4 +27,10 @@ public class UserManager implements UserService {
 		return new SuccessDataResult<List<User>>(this.userDao.findAll(), "Data listed");
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public DataResult getById(int id) {
+		return new SuccessDataResult<User>(this.userDao.findById(id));
+	}
+
 }
